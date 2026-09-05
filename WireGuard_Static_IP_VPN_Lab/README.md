@@ -187,8 +187,7 @@ ssh -i "key_vpn.pem" ubuntu@YOUR_VPN_ELASTIC_IP
 Inside Ubuntu:
 
 ```bash
-sudo apt update
-sudo apt install wireguard -y
+sudo apt update && sudo apt install wireguard -y
 ```
 
 Verify:
