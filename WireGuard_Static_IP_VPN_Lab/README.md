@@ -796,7 +796,7 @@ They solve different problems.
 
 ---
 
-# 29. Interview Questions and Answers
+# 29. Questions and Answers
 
 ### Q: What problem did you solve?
 
