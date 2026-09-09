@@ -177,6 +177,34 @@ An Elastic IP is a static public IPv4 address that can be associated with an AWS
 
 > When we need a stable public IPv4 address that should remain the same for the workload.
 
+Elastic IP vs Public IP — Interview Answer
+
+“Both are public IP addresses, but a normal public IP can change when an EC2 instance is stopped and started, while an Elastic IP is a static public IP that remains the same.”
+
+Public IP	                   Elastic IP
+Automatically assigned by AWS	  Allocated by us
+Can change after stop/start       Remains fixed
+Temporary	                  Static
+No need to reserve	          We explicitly allocate it
+Used for Internet access 	  Used when a fixed public IP is required
+
+Easy example:
+
+Public IP → 13.XXX.XXX.10 → stop/start → may change
+
+Elastic IP → 13.XXX.XXX.20 → stop/start → stays the same
+
+# “Normal public IP can change when an EC2 instance is stopped and started. So, if an application or DNS needs a fixed IP address, we use an Elastic IP.”
+Example:
+
+EC2 → Public IP 13.10.20.30
+Stop → Start → Public IP change ho sakta hai ❌
+
+Elastic IP → 13.10.20.40
+Stop → Start → same IP ✅
+
+So, Public IP = dynamic, Elastic IP = static.
+
 ---
 
 # 7. Subnet
@@ -240,6 +268,17 @@ Internet Gateway
 Internet
 ```
 
+A public subnet is a subnet that has a route to the Internet through an Internet Gateway. A private subnet does not have a direct route to the Internet Gateway. Public subnets are commonly used for load balancers or web servers, while private subnets are used for resources like application servers and databases.”
+
+Easy way to remember
+
+Public Subnet:
+Internet → Internet Gateway → Public Subnet
+
+Private Subnet:
+Internet → ❌ Direct access
+
+For a private subnet to access the Internet, it can use a NAT Gateway, but the Internet cannot directly initiate connections to the private resources.
 ### Interview Q: What makes a subnet public?
 
 **Answer:**
@@ -250,7 +289,7 @@ Internet
 
 # 9. Route Table
 
-A route table contains routes that determine where traffic should go.
+We use a route table to control and decide where network traffic should go. It tells AWS the next destination for the traffic.
 
 Public example:
 
@@ -325,6 +364,7 @@ Security Rules
 # 11. NAT Gateway
 
 NAT Gateway allows resources in private subnets to initiate outbound internet connections.
+NAT Gateway is an AWS service that allows resources in a private subnet to access the Internet for outbound traffic without assigning them public IP addresses. It is created in a public subnet and uses an Elastic IP
 
 ```text
 Private EC2
@@ -354,7 +394,7 @@ Internet
 
 # 12. Security Group
 
-A Security Group is a stateful virtual firewall associated with a resource's network interface.
+A Security Group is a virtual firewall for AWS resources like EC2. It controls inbound and outbound network traffic using rules based on protocols, ports, and IP addresses
 
 Example:
 
@@ -487,6 +527,7 @@ Interface Endpoint
 # 17. Transit Gateway
 
 Transit Gateway is a central networking hub.
+AWS Transit Gateway is a central networking service used to connect multiple VPCs and on-premises networks through a single central hub. It simplifies network connectivity and routing between different networks.
 
 ```text
 VPC-A ──┐
@@ -505,7 +546,7 @@ On-Prem ─┘
 
 # 18. AWS VPN
 
-Site-to-Site VPN can connect an on-premises network to AWS through encrypted tunnels.
+AWS VPN is a secure and encrypted connection between an on-premises network and AWS VPC over the Internet
 
 ```text
 On-Premises
@@ -538,6 +579,17 @@ VPN
 Direct Connect
 → Dedicated network connection to AWS
 ```
+
+“AWS Direct Connect is a dedicated private network connection between an on-premises network and AWS.”
+
+Easy difference:
+
+VPN → Internet ke through secure connection 🔐
+Direct Connect → Dedicated private connection 📡
+
+Interview mein yaad rakho:
+👉 VPN = Secure tunnel over Internet
+👉 Direct Connect = Dedicated connection to AWS
 
 For fresher interviews, basic understanding is enough.
 
@@ -576,7 +628,7 @@ It supports:
 
 # 21. Load Balancer
 
-A load balancer distributes incoming traffic across backend targets.
+A Load Balancer distributes incoming network traffic across multiple servers or EC2 instances to improve performance, availability, and reliability.
 
 ```text
 Users
@@ -601,6 +653,7 @@ Benefits:
 ALB = Application Load Balancer.
 
 It operates at Layer 7 and is mainly used for HTTP/HTTPS applications.
+ALB is an AWS load balancer that distributes HTTP and HTTPS traffic across multiple targets, such as EC2 instances, containers, or IP addresses
 
 Supports:
 
@@ -634,6 +687,35 @@ Web Target Group
 
 ---
 
+Path-Based Routing
+
+-----: What is path-based routing?
+
+You:
+
+“Path-based routing means ALB routes the request based on the URL path. For example, if the request is /api, ALB sends it to the backend target group, and if it is /admin, it sends it to the admin target group.”
+
+Example:
+
+example.com/api    → Backend
+example.com/admin  → Admin
+Host-Based Routing
+
+-----: What is host-based routing?
+
+You:
+
+“Host-based routing means ALB routes the request based on the hostname or domain name. For example, api.example.com can go to the backend target group and admin.example.com can go to the admin target group.”
+
+Example:
+
+api.example.com    → Backend
+admin.example.com  → Admin
+⭐ Difference — Interview mein
+
+“Path-based routing checks the URL path, while host-based routing checks the hostname or domain name.”
+
+
 # 23. NLB
 
 NLB = Network Load Balancer.
@@ -665,7 +747,8 @@ NLB → Layer 4 → TCP/UDP/TLS
 
 # 24. Target Group
 
-A target group contains backend targets that receive traffic from a load balancer.
+A Target Group is a collection of resources, such as EC2 instances, to which a Load Balancer sends traffic.
+ALB first receives the request, then forwards it to the Target Group, and the Target Group sends it to healthy EC2 instances.
 
 ```text
 ALB
@@ -681,6 +764,7 @@ Target Group
 **Answer:**
 
 > A Target Group is a collection of backend targets, such as EC2 instances, that receive traffic from a load balancer.
+> Target Group = Group of servers (EC2s) behind the Load Balancer.
 
 ---
 
@@ -704,7 +788,11 @@ If a target fails health checks, the load balancer stops sending traffic to that
 
 **Answer:**
 
-> A health check allows the load balancer to determine whether a backend target is healthy and capable of receiving traffic.
+> A health check is used by the Load Balancer to check whether the target server is healthy and ready to receive traffic
+> /health
+
+If the server gives the expected response, ALB considers it healthy and sends traffic to it.
+Health check verifies whether a target is healthy before sending traffic to it
 
 ---
 
