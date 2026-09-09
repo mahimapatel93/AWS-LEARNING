@@ -194,11 +194,11 @@ Public IP → 13.XXX.XXX.10 → stop/start → may change
 
 Elastic IP → 13.XXX.XXX.20 → stop/start → stays the same
 
-# “Normal public IP can change when an EC2 instance is stopped and started. So, if an application or DNS needs a fixed IP address, we use an Elastic IP.”
+Normal public IP can change when an EC2 instance is stopped and started. So, if an application or DNS needs a fixed IP address, we use an Elastic IP.
 Example:
 
 EC2 → Public IP 13.10.20.30
-Stop → Start → Public IP change ho sakta hai ❌
+Stop → Start → Public IP can be change ❌
 
 Elastic IP → 13.10.20.40
 Stop → Start → same IP ✅
