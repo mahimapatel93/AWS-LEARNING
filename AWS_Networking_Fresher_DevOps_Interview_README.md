@@ -268,17 +268,18 @@ Internet Gateway
 Internet
 ```
 
-A public subnet is a subnet that has a route to the Internet through an Internet Gateway. A private subnet does not have a direct route to the Internet Gateway. Public subnets are commonly used for load balancers or web servers, while private subnets are used for resources like application servers and databases.”
+A public subnet is a subnet that has a route to the Internet through an Internet Gateway. A private subnet does not have a direct route to the Internet Gateway. Public subnets are commonly used for load balancers or web servers, while private subnets are used for resources like application servers and databases.
 
-Easy way to remember
+### Easy Way to Remember
 
-Public Subnet:
+**Public Subnet:**
 Internet → Internet Gateway → Public Subnet
 
-Private Subnet:
-Internet → ❌ Direct access
+**Private Subnet:**
+Internet → ❌ Direct Access
 
 For a private subnet to access the Internet, it can use a NAT Gateway, but the Internet cannot directly initiate connections to the private resources.
+
 ### Interview Q: What makes a subnet public?
 
 **Answer:**
@@ -580,19 +581,20 @@ Direct Connect
 → Dedicated network connection to AWS
 ```
 
-“AWS Direct Connect is a dedicated private network connection between an on-premises network and AWS.”
+AWS Direct Connect is a dedicated private network connection between an on-premises network and AWS.
 
-Easy difference:
+### Easy Difference
 
-VPN → Internet ke through secure connection 🔐
-Direct Connect → Dedicated private connection 📡
+**VPN** → Internet ke through secure connection 🔐
 
-Interview mein yaad rakho:
-👉 VPN = Secure tunnel over Internet
-👉 Direct Connect = Dedicated connection to AWS
+**Direct Connect** → Dedicated private connection 📡
+
+### Interview Mein Yaad Rakho
+
+👉 **VPN** = Secure tunnel over Internet  
+👉 **Direct Connect** = Dedicated connection to AWS
 
 For fresher interviews, basic understanding is enough.
-
 ---
 
 # 20. Route 53
@@ -687,34 +689,39 @@ Web Target Group
 
 ---
 
-Path-Based Routing
+## Path-Based Routing
 
------: What is path-based routing?
+### What is path-based routing?
 
-You:
+> “Path-based routing means ALB routes the request based on the URL path. For example, if the request is `/api`, ALB sends it to the backend target group, and if it is `/admin`, it sends it to the admin target group.”
 
-“Path-based routing means ALB routes the request based on the URL path. For example, if the request is /api, ALB sends it to the backend target group, and if it is /admin, it sends it to the admin target group.”
+### Example:
 
-Example:
-
+```text
 example.com/api    → Backend
 example.com/admin  → Admin
-Host-Based Routing
+```
 
------: What is host-based routing?
+---
 
-You:
+## Host-Based Routing
 
-“Host-based routing means ALB routes the request based on the hostname or domain name. For example, api.example.com can go to the backend target group and admin.example.com can go to the admin target group.”
+### What is host-based routing?
 
-Example:
+> “Host-based routing means ALB routes the request based on the hostname or domain name. For example, `api.example.com` can go to the backend target group and `admin.example.com` can go to the admin target group.”
 
+### Example:
+
+```text
 api.example.com    → Backend
 admin.example.com  → Admin
-⭐ Difference — Interview mein
+```
 
-“Path-based routing checks the URL path, while host-based routing checks the hostname or domain name.”
+---
 
+## ⭐ Difference — Interview Mein
+
+> “Path-based routing checks the URL path, while host-based routing checks the hostname or domain name.”
 
 # 23. NLB
 
