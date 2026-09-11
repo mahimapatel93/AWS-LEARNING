@@ -571,7 +571,7 @@ On-Premises
 
 Direct Connect provides a dedicated network connection between an organization and AWS.
 
-Basic comparison:
+Basic comparison:--
 
 ```text
 VPN
@@ -591,8 +591,8 @@ AWS Direct Connect is a dedicated private network connection between an on-premi
 
 ### Interview Mein Yaad Rakho
 
-👉 **VPN** = Secure tunnel over Internet  
-👉 **Direct Connect** = Dedicated connection to AWS
+ **VPN** = Secure tunnel over Internet  
+ **Direct Connect** = Dedicated connection to AWS
 
 For fresher interviews, basic understanding is enough.
 ---
