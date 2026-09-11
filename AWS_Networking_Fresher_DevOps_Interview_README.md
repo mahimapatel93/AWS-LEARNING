@@ -589,8 +589,6 @@ AWS Direct Connect is a dedicated private network connection between an on-premi
 
 **Direct Connect** → Dedicated private connection 📡
 
-### Interview Mein Yaad Rakho
-
  **VPN** = Secure tunnel over Internet  
  **Direct Connect** = Dedicated connection to AWS
 
