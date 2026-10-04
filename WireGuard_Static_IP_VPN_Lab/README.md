@@ -61,7 +61,6 @@ Laptop → WireGuard → AWS VPN Server → Target EC2
 ```
 
 ---
-
 ## 2. Important Terminology
 
 | Term | Meaning |
@@ -155,17 +154,17 @@ Port 51820 is for WireGuard.
 AWS Console:
 
 ```text
-EC2
-→ Elastic IPs
-→ Allocate Elastic IP address
-→ Associate
-→ Select vpn-server
+ EC2
+  → Elastic IPs
+  → Allocate Elastic IP address
+  → Associate
+  → Select vpn-server
 ```
 
 Record the Elastic IP:
 
 ```text
-YOUR_VPN_ELASTIC_IP
+  YOUR_VPN_ELASTIC_IP
 ```
 
 ---
